@@ -8,6 +8,8 @@ The full-health flask guard was intentionally removed after the original verific
 
 The tables below describe the original clean build, before this deliberate bug was introduced. They are historical baseline evidence, not a claim that the current demo build passes every test. See `DEMO.md` for the repair exercise.
 
+The public repository is [coderabbit-demo/the-burrow-flash](https://github.com/coderabbit-demo/the-burrow-flash). The manually dispatched [issue-creation run](https://github.com/coderabbit-demo/the-burrow-flash/actions/runs/35878029959) succeeded and created [repair issue #1](https://github.com/coderabbit-demo/the-burrow-flash/issues/1) as github-actions[bot]. A [second dispatch](https://github.com/coderabbit-demo/the-burrow-flash/actions/runs/35878100761) also succeeded and logged `Reused demo issue`, leaving exactly one issue. This verifies GitHub issue creation and duplicate prevention, not CodeRabbit planning or review. CodeRabbit installation/access has not been independently verified.
+
 ## Original clean-build results
 
 | Check | Result |
@@ -41,7 +43,7 @@ The normal Safari interface loaded `tests.html` via `file://` and visibly report
 
 The account and repository instructions were checked against CodeRabbit's official quickstart and GitHub setup guide. Issue planning and refinement follow the official GitHub planning guide. The PR review command was checked against the official command reference. Direct sources are linked in the workshop.
 
-No real CodeRabbit account was created, repository connected, issue submitted, plan generated, or pull request reviewed as part of building this local folder. Those online actions remain workshop steps, not simulated successes. Availability and limits depend on the participant's account.
+During the original clean-build verification, no real CodeRabbit account was created, repository connected, issue submitted, plan generated, or pull request reviewed. The subsequent GitHub issue-creation run is recorded above; CodeRabbit account setup, planning, and review were not performed. Those online actions remain workshop steps, not simulated successes. Availability and limits depend on the participant's account.
 
 ## Remaining human checks
 

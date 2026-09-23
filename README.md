@@ -6,7 +6,7 @@ A short, dark pixel-art rabbit adventure and a practical CodeRabbit workshop. Bu
 
 This version intentionally contains one gameplay bug: **pressing F at full vitality consumes a flask without healing anything**. The existing healing regression test stays enabled, so `tests.html` currently reports **24 / 25 passed**. This is the bug to investigate and fix during the CodeRabbit demo.
 
-Open the repository's **Actions → Create demo bug issue → Run workflow** to generate the repair issue. Re-running it reuses an existing open demo issue. See [DEMO.md](DEMO.md) for the presenter flow.
+Open [**Actions → Create demo bug issue → Run workflow**](https://github.com/coderabbit-demo/the-burrow-flash/actions/workflows/create-demo-bug-issue.yml) to generate the repair issue. Re-running it reuses an existing open demo issue. The first repair issue is [#1](https://github.com/coderabbit-demo/the-burrow-flash/issues/1). See [DEMO.md](DEMO.md) for the presenter flow.
 
 ## Play
 

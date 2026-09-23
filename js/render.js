@@ -58,6 +58,24 @@
       ctx.ellipse(x, y + 3, radius, radius * 0.36, 0, 0, Math.PI * 2);
       ctx.fill();
     }
+    function door(x, openness) {
+      const height = Math.round(52 * (1 - openness));
+      ctx.fillStyle = "#201725";
+      ctx.fillRect(x + 2, 214, 32, 104);
+      if (height) {
+        ctx.fillStyle = "#594456";
+        ctx.fillRect(x + 4, 214, 28, height);
+        ctx.fillRect(x + 4, 318 - height, 28, height);
+        if (height > 4) {
+          ctx.fillStyle = "#b2967c";
+          ctx.fillRect(x + 4, 211 + height, 28, 3);
+          ctx.fillRect(x + 4, 318 - height, 28, 3);
+        }
+      }
+      ctx.fillStyle = "#836e7d";
+      ctx.fillRect(x, 210, 4, 110);
+      ctx.fillRect(x + 32, 210, 4, 110);
+    }
     function random(seed) {
       const n = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
       return n - Math.floor(n);
@@ -232,6 +250,8 @@
         );
         text("BONE KEY", room.key.x, room.key.y + 31, "#e8cc8d", 9);
       }
+      if (state.room > 0) door(32, state.doors.left);
+      if (state.room < B.rooms.length - 1) door(892, state.doors.right);
       if (state.room === 1 && !state.gateOpen) {
         for (let y = 224; y < 310; y += 21) {
           ctx.fillStyle = "#b7a0a0";

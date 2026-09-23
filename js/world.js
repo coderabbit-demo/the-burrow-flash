@@ -189,6 +189,7 @@
       enemies: [],
       particles: [],
       shake: 0,
+      doors: { left: 0, right: 0 },
       transitionCooldown: 0,
       noticeCooldown: 0,
     };
@@ -202,7 +203,27 @@
     state.player.attack = 0;
     state.player.dodge = 0;
     state.particles = [];
+    state.doors = {
+      left: room > 0 && !fromRight ? 1 : 0,
+      right: fromRight ? 1 : 0,
+    };
     state.transitionCooldown = 0.6;
+  };
+  B.updateDoors = function (state, dt, reducedMotion) {
+    const nearPassage = Math.abs(state.player.y - 267) < 51;
+    for (const side of ["left", "right"]) {
+      const available =
+        side === "left"
+          ? state.room > 0
+          : state.room < B.rooms.length - 1 &&
+            (state.room !== 1 || state.gateOpen);
+      const nearDoor =
+        side === "left" ? state.player.x < 170 : state.player.x > 790;
+      const target = available && nearPassage && nearDoor ? 1 : 0;
+      state.doors[side] = reducedMotion
+        ? target
+        : Math.max(0, Math.min(1, state.doors[side] + (target ? 1 : -1) * dt * 4));
+    }
   };
   B.collectKey = function (state) {
     const key = B.rooms[state.room].key;

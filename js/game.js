@@ -255,6 +255,7 @@
         notice("A moment to catch your breath.");
       }
     }
+    B.updateDoors(state, dt, settings.motion);
     state.particles = state.particles.filter((particle) => {
       particle.life -= dt;
       particle.x += particle.vx * dt;

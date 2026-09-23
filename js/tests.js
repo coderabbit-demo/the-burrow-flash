@@ -172,6 +172,45 @@
     B.enterRoom(s, 1, false);
     assert(s.key && s.player.hp === 51 && s.player.flasks === 1);
   });
+  test("Doorways open on approach and close after leaving", () => {
+    const s = B.createState();
+    s.player.x = 850;
+    s.player.y = 267;
+    B.updateDoors(s, 0.1, false);
+    assert(s.doors.right > 0 && s.doors.right < 1);
+    B.updateDoors(s, 0.15, false);
+    assert(s.doors.right === 1 && s.doors.left === 0);
+    s.player.x = 600;
+    B.updateDoors(s, 0.25, false);
+    assert(s.doors.right === 0);
+  });
+  test("The bone gate stays shut until unlocked", () => {
+    const s = B.createState();
+    B.enterRoom(s, 1, false);
+    s.player.x = 850;
+    s.player.y = 267;
+    B.updateDoors(s, 1, true);
+    assert(s.doors.right === 0);
+    s.key = true;
+    B.openGate(s);
+    B.updateDoors(s, 1, true);
+    assert(s.doors.right === 1);
+    s.player.y = 100;
+    B.updateDoors(s, 1, true);
+    assert(s.doors.right === 0);
+  });
+  test("Arrival opens the new room's door and respawn resets it", () => {
+    const s = B.createState();
+    B.enterRoom(s, 1, false);
+    assert(s.doors.left === 1 && s.doors.right === 0);
+    s.player.x = 300;
+    B.updateDoors(s, 0.25, false);
+    assert(s.doors.left === 0);
+    B.enterRoom(s, 0, true);
+    assert(s.doors.right === 1 && s.doors.left === 0);
+    B.respawn(s);
+    assert(s.doors.left === 0 && s.doors.right === 0);
+  });
   test("Death returns to camp, restores resources and retains progression", () => {
     const s = B.createState();
     s.key = true;

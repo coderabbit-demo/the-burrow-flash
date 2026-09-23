@@ -60,7 +60,7 @@
     return true;
   };
   B.heal = function (p) {
-    if (!p.flasks || p.hp <= 0) return false;
+    if (!p.flasks || p.hp <= 0 || p.hp >= 100) return false;
     p.flasks--;
     p.hp = Math.min(100, p.hp + 55);
     return true;

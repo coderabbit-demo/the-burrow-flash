@@ -4,7 +4,7 @@ A short, dark pixel-art rabbit adventure and a practical CodeRabbit workshop. Bu
 
 ## Live demo exercise
 
-This version intentionally contains one gameplay bug: **pressing F at full vitality consumes a flask without healing anything**. The existing healing regression test stays enabled, so `tests.html` currently reports **24 / 25 passed**. This is the bug to investigate and fix during the CodeRabbit demo.
+The demo exercise investigates a gameplay bug: **pressing F at full vitality consumed a flask without healing anything**. The fix preserves the flask at full vitality; `tests.html` now reports **28 / 28 passed**. See [DEMO.md](DEMO.md) for the original reproduction steps.
 
 Open [**Actions → Create demo bug issue → Run workflow**](https://github.com/coderabbit-demo/the-burrow-flash/actions/workflows/create-demo-bug-issue.yml) to generate the repair issue. Re-running it reuses an existing open demo issue. The first repair issue is [#1](https://github.com/coderabbit-demo/the-burrow-flash/issues/1). See [DEMO.md](DEMO.md) for the presenter flow.
 
@@ -24,6 +24,8 @@ You can upload the folder unchanged to a static host. All application paths are 
 | Escape | Pause / close a conversation |
 
 Walk east from camp, find the bone key on the cave's northeastern altar, then press E near the eastern gate. Watch enemy warning circles, dodge away, and strike during recovery. The Devourer's second phase has a wider, faster attack. Returning west is always possible. Enemies reset when you re-enter their room. Death returns you to camp with full health and flasks, retaining the key and opened gate.
+
+Doorways open as you approach and close after you leave, so entering or exiting a room has a visible cue. The bone gate stays shut until unlocked. Reduced-motion mode switches doors immediately instead of animating them.
 
 Settings include optional sound, reduced motion, and presenter assist. Assist reduces incoming damage, increases attack damage, and speeds stamina regeneration. Settings and workshop checkmarks persist when browser storage is available, otherwise they work for the current page session. Game progress is not saved.
 

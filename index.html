@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#15121d" />
+    <title>The Burrow Flash</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="js/art.js"></script>
+    <script defer src="js/world.js"></script>
+    <script defer src="js/combat.js"></script>
+    <script defer src="js/input.js"></script>
+    <script defer src="js/render.js"></script>
+    <script defer src="js/game.js"></script>
+  </head>
+  <body class="game-page">
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="The Burrow Flash home"
+        ><img src="favicon.svg" alt="" width="32" height="32" /><span
+          >THE BURROW <b>FLASH</b></span
+        ></a
+      >
+      <span class="edition">A LITTLE ADVENTURE. A BETTER WAY TO BUILD.</span>
+      <a
+        class="header-link"
+        href="learn.html"
+        target="_blank"
+        rel="noopener"
+        data-guide
+        >Workshop guide <span aria-hidden="true">↗</span></a
+      >
+    </header>
+    <main class="game-layout">
+      <div class="eyebrow">
+        <span class="live-dot"></span> A CODERABBIT FIELD TRIP
+        <span class="eyebrow-right">01 / INTO THE HOLLOW</span>
+      </div>
+      <section class="game-frame" aria-label="The Burrow Flash game">
+        <div class="game-topbar">
+          <span id="area-name">THE LANTERN CAMP</span
+          ><span id="objective">A light in the dark.</span
+          ><button id="pause-button" type="button" disabled>
+            Pause <kbd>Esc</kbd>
+          </button>
+        </div>
+        <div class="canvas-wrap">
+          <canvas
+            id="game"
+            width="960"
+            height="528"
+            tabindex="0"
+            aria-label="Top-down rabbit adventure. Move with WASD or arrows. J attacks, Shift dodges, F heals, E interacts, Escape pauses."
+          ></canvas>
+          <div id="title-screen" class="title-screen">
+            <div class="title-copy">
+              <p class="eyebrow">WELCOME TO THE HOLLOW</p>
+              <h1>Small rabbit.<br />Big trouble.</h1>
+              <p>
+                Something stirs beneath the roots.<br />Find the key. Follow the
+                light.<br />Send the bugs back into the dark.
+              </p>
+              <button class="primary" id="start-button">
+                Enter the burrow <span aria-hidden="true">→</span></button
+              ><a
+                class="text-link"
+                href="learn.html"
+                target="_blank"
+                rel="noopener"
+                data-guide
+                >Here to build? Open the workshop ↗</a
+              >
+              <p class="tiny">5–10 MINUTES · KEYBOARD · NO INSTALLS</p>
+            </div>
+            <div class="title-stamp" aria-hidden="true">
+              EXPLORE<br /><span>✦</span><br />BUILD
+            </div>
+          </div>
+          <div id="toast" class="toast" role="status" aria-live="polite"></div>
+          <div id="interaction" class="interaction" hidden></div>
+        </div>
+        <div class="game-hud" id="hud">
+          <div class="meter-group">
+            <label for="health"
+              >VITALITY <span id="health-value">100 / 100</span></label
+            ><meter id="health" min="0" max="100" value="100">100</meter>
+          </div>
+          <div class="meter-group stamina">
+            <label for="stamina"
+              >STAMINA <span id="stamina-value">100 / 100</span></label
+            ><meter id="stamina" min="0" max="100" value="100">100</meter>
+          </div>
+          <span class="inventory" id="inventory"
+            >3 FLASKS <span>·</span> NO KEY</span
+          ><span id="assist-indicator" hidden>ASSIST ON</span>
+        </div>
+      </section>
+      <div class="below-game">
+        <p>
+          <kbd>W A S D</kbd> move <kbd>J</kbd> strike <kbd>Shift</kbd> dodge
+          <kbd>F</kbd> heal <kbd>E</kbd> interact
+        </p>
+        <button class="text-button" id="settings-button">
+          Sound & settings
+        </button>
+      </div>
+      <aside class="workshop-strip">
+        <span class="strip-number">↳</span>
+        <div>
+          <h2>Play it. Then make it yours.</h2>
+          <p>
+            Learn to turn a GitHub issue into a plan, a change, and a CodeRabbit
+            review.
+          </p>
+        </div>
+        <a href="learn.html" target="_blank" rel="noopener" data-guide
+          >Start the workshop <span aria-hidden="true">↗</span></a
+        >
+      </aside>
+      <p class="device-note">
+        Best played with a keyboard on a laptop or desktop. The workshop works
+        on any screen.
+      </p>
+    </main>
+    <footer class="site-footer">
+      <span>HANDCRAFTED PIXELS. BROWSER-NATIVE MAGIC.</span
+      ><span>THE BURROW FLASH / 2026</span>
+    </footer>
+    <dialog id="menu-dialog" aria-labelledby="menu-title">
+      <form method="dialog">
+        <button class="close-button" aria-label="Close menu">×</button>
+      </form>
+      <p class="eyebrow">TAKE A BREATHER</p>
+      <h2 id="menu-title">The hollow can wait.</h2>
+      <p>Your adventure is paused.</p>
+      <div class="settings">
+        <label
+          ><input type="checkbox" id="sound-setting" /> Sound effects
+          <small>Starts only after you enable it.</small></label
+        ><label
+          ><input type="checkbox" id="motion-setting" /> Reduced motion
+          <small>Removes screen shake and ambient particles.</small></label
+        ><label
+          ><input type="checkbox" id="assist-setting" /> Presenter assist
+          <small
+            >Less damage, stronger strikes, faster stamina recovery.</small
+          ></label
+        >
+      </div>
+      <div class="dialog-actions">
+        <button class="primary" id="resume-button">Return to adventure</button
+        ><a class="secondary" href="learn.html" target="_blank" rel="noopener"
+          >Workshop ↗</a
+        ><button class="text-button" id="restart-button">
+          Restart adventure
+        </button>
+      </div>
+    </dialog>
+    <dialog id="npc-dialog" aria-labelledby="npc-title">
+      <form method="dialog">
+        <button class="close-button" aria-label="Close conversation">×</button>
+      </form>
+      <p class="eyebrow" id="npc-role"></p>
+      <h2 id="npc-title"></h2>
+      <p id="npc-copy"></p>
+      <div class="dialog-actions">
+        <a
+          id="npc-guide"
+          class="primary"
+          href="learn.html"
+          target="_blank"
+          rel="noopener"
+          >Open lesson ↗</a
+        ><button class="secondary" id="npc-close">Back to the hollow</button>
+      </div>
+      <p class="tiny">OPTIONAL FIELD NOTES · YOUR GAME STAYS PAUSED</p>
+    </dialog>
+    <dialog id="victory-dialog" aria-labelledby="victory-title">
+      <p class="eyebrow">THE HOLLOW BREATHES AGAIN</p>
+      <h2 id="victory-title">Small rabbit.<br />Big victory.</h2>
+      <p>
+        The lanterns are safe. Now give this little world something of your own.
+      </p>
+      <p id="victory-stats"></p>
+      <div class="dialog-actions">
+        <a
+          class="primary"
+          href="learn.html#issue"
+          target="_blank"
+          rel="noopener"
+          >Build your first feature ↗</a
+        ><button class="secondary" id="play-again">Play again</button>
+      </div>
+    </dialog>
+  </body>
+</html>

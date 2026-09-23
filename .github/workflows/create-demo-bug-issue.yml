@@ -1,0 +1,81 @@
+name: Create demo bug issue
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+concurrency:
+  group: create-demo-bug-issue
+  cancel-in-progress: false
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Open or reuse the flask bug issue
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const marker = '<!-- burrow-flash-demo:full-health-flask-v1 -->';
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner, repo, state: 'open', per_page: 100
+            });
+            let issue = issues.find(item => !item.pull_request && item.body?.includes(marker));
+            const reused = Boolean(issue);
+            if (!issue) {
+              const body = [
+                marker,
+                '## Bug',
+                'Drinking a healing flask at full vitality wastes a charge without restoring any health.',
+                '',
+                '## Reproduce',
+                '1. Download the repository and open `index.html` directly in a desktop browser.',
+                '2. Choose **Enter the burrow**. Start at **100 / 100 vitality** with **3 flasks**.',
+                '3. Press **F** once without taking any damage.',
+                '4. Observe that vitality stays at 100 but the flask count drops to 2.',
+                '5. Open `tests.html`: **Healing respects flask count and full health** fails.',
+                '',
+                '## Expected behavior',
+                'At full vitality, F should keep the flask count unchanged and explain that the player is already at full vitality.',
+                '',
+                '## Acceptance criteria',
+                '- [ ] Pressing F at full vitality does not consume a flask, including repeated presses.',
+                '- [ ] Full-health attempts use the existing already-at-full-vitality message, without a successful healing effect.',
+                '- [ ] An injured, living player with a flask heals by up to 55, capped at 100, and spends exactly one flask.',
+                '- [ ] An empty flask supply or a dead player cannot heal.',
+                '- [ ] Resting at the lantern still restores vitality, stamina, and three flasks.',
+                '- [ ] The existing browser tests pass: 25 / 25. Preserve and, if useful, strengthen the healing regression test.',
+                '- [ ] The game continues to run offline through file:// with no dependencies or build step.',
+                '- [ ] Update the current-demo status in README.md and VERIFICATION.md after repairing the bug.',
+                '',
+                '## CodeRabbit workshop',
+                'This is a deliberately seeded, reversible demo bug. It is not an unrelated production incident.',
+                'Once CodeRabbit has access to this repository and planning is enabled, add this issue comment:',
+                '',
+                '```text',
+                '@coderabbitai plan',
+                '```',
+                '',
+                'Review and refine the plan, implement the fix on a branch, and open a linked pull request for CodeRabbit review.',
+                'Keep the change focused on healing behavior. Do not skip the failing test or change it to expect wasted flasks.',
+                '',
+                '## Presenter reset',
+                'Move close to the camp lantern and press E to refill the flasks. Restart adventure also restores the initial state.'
+              ].join('\n');
+              ({ data: issue } = await github.rest.issues.create({
+                owner, repo,
+                title: 'Fix healing flask consumption at full vitality',
+                body
+              }));
+            }
+            core.setOutput('issue-url', issue.html_url);
+            core.notice(`${reused ? 'Reused' : 'Created'} demo issue: ${issue.html_url}`);
+            await core.summary
+              .addHeading(reused ? 'Existing demo issue' : 'Demo issue created')
+              .addLink(`#${issue.number}: ${issue.title}`, issue.html_url)
+              .addRaw('\n\nComment @coderabbitai plan on the issue when you are ready to start the workshop.\n')
+              .write();

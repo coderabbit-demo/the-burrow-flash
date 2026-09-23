@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#15121d" />
+    <title>The field guide | The Burrow Flash</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="js/lessons.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"
+        ><img src="favicon.svg" width="32" height="32" alt="" /><span
+          >THE BURROW <b>FLASH</b></span
+        ></a
+      ><span class="edition">THE BUILDER'S FIELD GUIDE</span
+      ><a class="header-link" href="index.html">Play the game ↗</a>
+    </header>
+    <main class="guide-layout">
+      <nav class="guide-nav" aria-label="Workshop chapters">
+        <p class="eyebrow">FROM PLAYER TO BUILDER</p>
+        <a href="#setup"><span>01</span>Create your account</a
+        ><a href="#connect"><span>02</span>Connect your repo</a
+        ><a href="#issue"><span>03</span>Write a good issue</a
+        ><a href="#plan"><span>04</span>Make a plan</a
+        ><a href="#review"><span>05</span>Build and review</a
+        ><a href="#presenter"><span>↳</span>Presenter checklist</a>
+        <p class="progress" id="progress" aria-live="polite">
+          0 of 5 field notes completed
+        </p>
+        <p class="tiny">
+          CHECKMARKS ARE YOUR NOTES.<br />THEY DO NOT VERIFY ACCOUNT SETUP.
+        </p>
+        <button id="reset-lessons" class="text-button">
+          Reset lesson checkmarks
+        </button>
+      </nav>
+      <div class="guide-main">
+        <div class="guide-intro">
+          <p class="eyebrow">A CODERABBIT WORKSHOP / ABOUT 30–45 MINUTES</p>
+          <h1>A little world.<br />Your next good idea.</h1>
+          <p class="lead">
+            You have a working game. Now use CodeRabbit to plan a small
+            improvement, build it, and review the change before it ships.
+          </p>
+          <div class="callout">
+            The game and this guide work offline. Account setup, repository
+            hosting, planning, and pull request reviews happen online in GitHub
+            and CodeRabbit. Nothing on this page connects to your account or
+            sends your code.
+          </div>
+          <p>
+            Bring a GitHub account, this project folder, a browser, and a text
+            editor. A coding agent is optional. No Node, package manager, or
+            local server is needed to run or edit the game.
+          </p>
+          <p>
+            If you came here from a running game, return to that tab to resume.
+            “Play the game” above starts a fresh page.
+          </p>
+        </div>
+        <section id="setup">
+          <p class="eyebrow">FIELD NOTE 01 / YOUR STARTING POINT</p>
+          <h2>Create your CodeRabbit account.</h2>
+          <ol>
+            <li>
+              If you do not have one,
+              <a href="https://github.com/signup" target="_blank" rel="noopener"
+                >create a GitHub account</a
+              >
+              first.
+            </li>
+            <li>
+              Visit
+              <a
+                href="https://app.coderabbit.ai/"
+                target="_blank"
+                rel="noopener"
+                >the CodeRabbit app</a
+              >
+              and choose GitHub to sign in. Follow the authorization prompts to
+              create or access your CodeRabbit account.
+            </li>
+            <li>
+              Use a repository you own for this workshop. An organization
+              repository may require its owner's approval to install the app or
+              grant access.
+            </li>
+          </ol>
+          <div class="callout">
+            Signing in and connecting a repository are separate steps. Complete
+            both before asking CodeRabbit to work on an issue.
+          </div>
+          <p class="source-line">
+            Reference:
+            <a
+              href="https://docs.coderabbit.ai/getting-started/quickstart"
+              target="_blank"
+              rel="noopener"
+              >CodeRabbit quickstart</a
+            >.
+          </p>
+          <label class="lesson-check"
+            ><input type="checkbox" data-lesson="setup" /> I have completed this
+            account step.</label
+          >
+        </section>
+        <section id="connect">
+          <p class="eyebrow">FIELD NOTE 02 / GIVE THE RABBIT CONTEXT</p>
+          <h2>Connect this little world.</h2>
+          <ol>
+            <li>
+              On GitHub, create a repository named
+              <code>the-burrow-flash</code>. Pick public or private to suit your
+              workshop. Never upload secrets.
+            </li>
+            <li>
+              Use <strong>Add file → Upload files</strong> to upload the
+              <em>contents</em> of this folder. Put <code>index.html</code>,
+              <code>learn.html</code>, <code>style.css</code>, and the
+              <code>js</code> directory at the repository root. Include the
+              remaining documentation and test files. Commit the upload to the
+              default branch.
+            </li>
+            <li>
+              In CodeRabbit, add repositories and follow the GitHub app
+              installation flow. Choose your personal account or the intended
+              organization, then grant access to this repository.
+            </li>
+            <li>
+              Return to CodeRabbit and confirm the repository is listed. If it
+              is missing, check the selected GitHub account, app installation's
+              repository selection, and any pending organization approval.
+            </li>
+            <li>
+              Confirm CodeRabbit planning is enabled for this repository before
+              the next exercise. Feature availability and limits depend on your
+              account; check the current app rather than assuming a trial or
+              unlimited usage.
+            </li>
+          </ol>
+          <p>
+            The included hidden
+            <code>.github/ISSUE_TEMPLATE/feature.md</code> is an optional
+            reusable template. If your file picker hides it, copy its contents
+            into that path using GitHub's file editor. You can also paste the
+            issue below without installing the template.
+          </p>
+          <p class="source-line">
+            References:
+            <a
+              href="https://docs.coderabbit.ai/platforms/github-com"
+              target="_blank"
+              rel="noopener"
+              >GitHub setup and permissions</a
+            >
+            ·
+            <a
+              href="https://docs.coderabbit.ai/issues/planner/github"
+              target="_blank"
+              rel="noopener"
+              >Planning on GitHub</a
+            >.
+          </p>
+          <label class="lesson-check"
+            ><input type="checkbox" data-lesson="connect" /> I can see my
+            repository in CodeRabbit.</label
+          >
+        </section>
+        <section id="issue">
+          <p class="eyebrow">FIELD NOTE 03 / A SMALL, TESTABLE CHANGE</p>
+          <h2>Give your idea a finish line.</h2>
+          <p>
+            The adventure intentionally has no collectible carrot counter. Add
+            one as your first feature. Create a GitHub issue in your new
+            repository using this brief:
+          </p>
+          <div class="snippet">
+            <div class="snippet-header">
+              ISSUE TITLE + BODY
+              <button data-copy="issue-text">Copy issue</button>
+            </div>
+            <pre id="issue-text" tabindex="0">
+Title: Add a collectible carrot counter
+
+Goal
+Give players a small exploration reward by placing five collectible carrots in the lantern camp.
+
+Requirements
+- Put five carrots on reachable floor, away from walls, NPCs, the lantern, and the exit.
+- Collect a carrot once when the player touches it.
+- Show a readable “Carrots: N / 5” counter in the HUD.
+- Retain collected carrots when moving between rooms or returning after death.
+- Reset the collection when starting a new adventure or reloading the page.
+- Keep the existing controls and key/boss progression working.
+- Keep everything local: no dependencies, CDN, fetch, or build step.
+
+Acceptance criteria
+- A fresh game shows 0 / 5; collecting all five shows 5 / 5.
+- Standing on a collected carrot never counts it twice.
+- Leaving and re-entering camp does not respawn collected carrots.
+- Death preserves the count; Restart adventure resets it.
+- Carrots cannot spawn inside obstacles.
+- The HUD stays readable at laptop size.
+- The game still runs by double-clicking index.html offline.
+- Add relevant checks to the existing browser test page.
+
+Out of scope
+Inventory menus, shops, new levels, online leaderboards, and saved games.</pre
+            >
+          </div>
+          <p>
+            Specific behavior makes the plan easier to evaluate. “Make it more
+            fun” leaves too many decisions open. “Five reachable carrots,
+            collected once, reset on restart” gives you something concrete to
+            test.
+          </p>
+          <label class="lesson-check"
+            ><input type="checkbox" data-lesson="issue" /> I created an issue
+            with clear acceptance criteria.</label
+          >
+        </section>
+        <section id="plan">
+          <p class="eyebrow">FIELD NOTE 04 / THINK BEFORE YOU PATCH</p>
+          <h2>Plan with CodeRabbit, in the issue.</h2>
+          <p>Add this comment to your GitHub issue:</p>
+          <div class="snippet">
+            <div class="snippet-header">
+              ISSUE COMMENT
+              <button data-copy="plan-command">Copy command</button>
+            </div>
+            <pre id="plan-command" tabindex="0">@coderabbitai plan</pre>
+          </div>
+          <p>
+            CodeRabbit posts the generated coding plan as an issue comment. When
+            Issue Enrichment is enabled, a <strong>Create Plan</strong> checkbox
+            can also appear in its comment on a new issue. The command above is
+            the workshop's default route.
+          </p>
+          <p>
+            Read the proposed files, tasks, and tests. Does the plan keep the
+            game offline? Does it handle death and restart differently? Does it
+            preserve your working adventure? Reply with a refinement:
+          </p>
+          <div class="snippet">
+            <div class="snippet-header">
+              EXAMPLE REFINEMENT
+              <button data-copy="refine-text">Copy refinement</button>
+            </div>
+            <pre id="refine-text" tabindex="0">
+@coderabbitai Please refine this plan to keep the game dependency-free and compatible with file://. Explain where the carrot state should live so it survives room changes and death but resets on a new run. Include checks for duplicate collection and unreachable carrot positions. Keep the patch limited to this feature.</pre
+            >
+          </div>
+          <p>
+            Discuss the plan until the steps match your intent. Repeating
+            <code>@coderabbitai plan</code> regenerates it from scratch. Once
+            ready, copy the plan's agent prompts into your coding agent, or
+            follow the tasks manually. Generating a plan does not mean the
+            feature has been implemented.
+          </p>
+          <div class="callout">
+            No response? Confirm the issue belongs to the connected repository,
+            planning is enabled, app permissions are current, and your account
+            has access to the feature. Check the app for limits or errors. Avoid
+            repeatedly posting commands while a request is pending.
+          </div>
+          <p class="source-line">
+            Reference:
+            <a
+              href="https://docs.coderabbit.ai/issues/planner/github"
+              target="_blank"
+              rel="noopener"
+              >GitHub planning, refinement, and agent handoff</a
+            >.
+          </p>
+          <label class="lesson-check"
+            ><input type="checkbox" data-lesson="plan" /> I have read and
+            refined the plan.</label
+          >
+        </section>
+        <section id="review">
+          <p class="eyebrow">FIELD NOTE 05 / CLOSE THE LOOP</p>
+          <h2>Build it. Play it. Review it.</h2>
+          <ol>
+            <li>
+              Create a feature branch, such as
+              <code>feature/carrot-counter</code>, in GitHub or your Git client.
+              Apply the agreed plan with your editor or coding agent.
+            </li>
+            <li>
+              Open <code>index.html</code> locally, try the feature, then open
+              <code>tests.html</code>. Test all the issue's acceptance criteria,
+              including death and restart.
+            </li>
+            <li>
+              Commit your changes to the feature branch and open a pull request
+              against the default branch. GitHub's web editor can make branch
+              commits without installing Git. For edits made on GitHub, download
+              the feature branch ZIP and test that exact version locally.
+            </li>
+            <li>
+              Describe the behavior, what you tested, and any limitations. Link
+              the issue using <code>Closes #123</code>, replacing
+              <code>123</code> with your actual issue number.
+            </li>
+            <li>
+              Read CodeRabbit's review. Reproduce reported problems, ask for
+              clarification when needed, and fix valid findings. If automatic
+              review is disabled, check the repository settings or request a
+              review with the command below.
+            </li>
+            <li>
+              Test the revised code. Compare the final result against the issue
+              before deciding to merge. A bot review is useful evidence, not a
+              substitute for playing your game.
+            </li>
+          </ol>
+          <div class="snippet">
+            <div class="snippet-header">
+              PULL REQUEST COMMENT
+              <button data-copy="review-command">Copy command</button>
+            </div>
+            <pre id="review-command" tabindex="0">@coderabbitai review</pre>
+          </div>
+          <div class="snippet">
+            <div class="snippet-header">
+              ASK ABOUT A FINDING
+              <button data-copy="review-question">Copy question</button>
+            </div>
+            <pre id="review-question" tabindex="0">
+@coderabbitai Can you show the sequence of player actions that triggers this problem, and explain how the proposed fix preserves offline play?</pre
+            >
+          </div>
+          <p class="source-line">
+            References:
+            <a
+              href="https://docs.coderabbit.ai/guide/code-review"
+              target="_blank"
+              rel="noopener"
+              >First code review</a
+            >
+            ·
+            <a
+              href="https://docs.coderabbit.ai/reference/review-commands"
+              target="_blank"
+              rel="noopener"
+              >Review commands</a
+            >.
+          </p>
+          <label class="lesson-check"
+            ><input type="checkbox" data-lesson="review" /> I tested the change
+            and evaluated the review.</label
+          >
+        </section>
+        <section id="presenter">
+          <p class="eyebrow">BEFORE THE ROOM FILLS UP</p>
+          <h2>Make the demo feel easy.</h2>
+          <div class="checklist">
+            <label
+              ><input type="checkbox" /> Open the game locally and complete a
+              quick control check.</label
+            ><label
+              ><input type="checkbox" /> Open Sound & settings. Enable presenter
+              assist if helpful.</label
+            ><label
+              ><input type="checkbox" /> Verify GitHub access, CodeRabbit
+              repository connection, planning access, and internet.</label
+            ><label
+              ><input type="checkbox" /> Have the issue brief ready. Use a
+              small, clean feature branch.</label
+            ><label
+              ><input type="checkbox" /> Check projection size and browser zoom.
+              Keep the workshop in another tab.</label
+            ><label
+              ><input type="checkbox" /> Keep an already-generated plan and
+              reviewed PR available if the service is slow.</label
+            >
+          </div>
+          <p>
+            <strong>Suggested flow:</strong> 5 minutes to play, 5 to connect the
+            repo, 10 to write and refine the issue plan, then 15–25 to
+            implement, test, and discuss the review. Service response time and
+            implementation time vary.
+          </p>
+          <p>
+            <strong>Keep the story simple:</strong> “We already have a working
+            game. We're making one small change. The issue defines success, the
+            plan gives us a path, and the review helps us check our work.”
+          </p>
+          <p>
+            For later sessions, try another NPC conversation, a new enemy
+            pattern, or a second optional room. Keep each addition in its own
+            issue.
+          </p>
+          <p class="source-line">
+            Product instructions checked against official CodeRabbit
+            documentation on September 23, 2026. Interfaces and account
+            availability can change. Follow the linked documentation if a label
+            differs.
+          </p>
+          <a class="primary" href="index.html">Back to the burrow →</a>
+        </section>
+        <p
+          id="copy-status"
+          class="copy-status"
+          role="status"
+          aria-live="polite"
+        ></p>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <span>LEARN LOCALLY. BUILD TOGETHER.</span
+      ><span>THE BURROW FLASH / FIELD GUIDE</span>
+    </footer>
+  </body>
+</html>

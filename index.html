@@ -90,9 +90,63 @@
               >STAMINA <span id="stamina-value">100 / 100</span></label
             ><meter id="stamina" min="0" max="100" value="100">100</meter>
           </div>
-          <span class="inventory" id="inventory"
-            >3 FLASKS <span>·</span> NO KEY</span
-          ><span id="assist-indicator" hidden>ASSIST ON</span>
+          <div class="inventory" id="inventory">
+            <div class="flask-supply">
+              <span
+                class="flask-icons"
+                id="flask-icons"
+                role="img"
+                aria-label="3 of 3 healing flasks remaining"
+              >
+                <svg
+                  class="flask-icon"
+                  viewBox="0 0 20 28"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    class="flask-outline"
+                    d="M6 5h8v6l4 5v8l-3 3H5l-3-3v-8l4-5z"
+                  />
+                  <path class="flask-liquid" d="M4 18h12v5l-2 2H6l-2-2z" />
+                  <path class="flask-shine" d="M5 17v5" />
+                  <path class="flask-cork" d="M6 1h8v5H6z" />
+                </svg>
+                <svg
+                  class="flask-icon"
+                  viewBox="0 0 20 28"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    class="flask-outline"
+                    d="M6 5h8v6l4 5v8l-3 3H5l-3-3v-8l4-5z"
+                  />
+                  <path class="flask-liquid" d="M4 18h12v5l-2 2H6l-2-2z" />
+                  <path class="flask-shine" d="M5 17v5" />
+                  <path class="flask-cork" d="M6 1h8v5H6z" />
+                </svg>
+                <svg
+                  class="flask-icon"
+                  viewBox="0 0 20 28"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <path
+                    class="flask-outline"
+                    d="M6 5h8v6l4 5v8l-3 3H5l-3-3v-8l4-5z"
+                  />
+                  <path class="flask-liquid" d="M4 18h12v5l-2 2H6l-2-2z" />
+                  <path class="flask-shine" d="M5 17v5" />
+                  <path class="flask-cork" d="M6 1h8v5H6z" />
+                </svg>
+              </span>
+              <span class="flask-count" id="flask-count">3 / 3</span>
+              <kbd aria-label="Press F to heal">F</kbd>
+            </div>
+            <span class="key-status" id="key-status">NO KEY</span>
+          </div>
+          <span id="assist-indicator" hidden>ASSIST ON</span>
         </div>
       </section>
       <div class="below-game">

@@ -5,6 +5,7 @@
     $ = (id) => document.getElementById(id);
   const canvas = $("game"),
     render = B.createRenderer(canvas);
+  const flaskIcons = [...document.querySelectorAll(".flask-icon")];
   const saved = B.storage.read("settings", {}),
     prefs = saved && typeof saved === "object" ? saved : {};
   const settings = {
@@ -279,8 +280,15 @@
     $("health-value").textContent = Math.ceil(p.hp) + " / 100";
     $("stamina").value = p.stamina;
     $("stamina-value").textContent = Math.floor(p.stamina) + " / 100";
-    $("inventory").textContent =
-      `${p.flasks} FLASKS · ${state.key ? "BONE KEY" : "NO KEY"}`;
+    flaskIcons.forEach((icon, index) => {
+      icon.classList.toggle("is-empty", index >= p.flasks);
+    });
+    $("flask-icons").setAttribute(
+      "aria-label",
+      `${p.flasks} of 3 healing flasks remaining`,
+    );
+    $("flask-count").textContent = `${p.flasks} / 3`;
+    $("key-status").textContent = state.key ? "BONE KEY" : "NO KEY";
     $("area-name").textContent = B.rooms[state.room].name;
     $("objective").textContent =
       state.room === 0

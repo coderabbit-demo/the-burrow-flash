@@ -2,11 +2,13 @@
 
 Checked September 23, 2026.
 
-## Current demo build
+## Current repaired build
 
-The full-health flask guard was intentionally removed after the original verification below. Current expected result: **24 / 25 passed**, with only `Healing respects flask count and full health` failing. The failure remains visible, not skipped or marked successful. Chrome local-file checks reproduce F consuming a flask at 100 health, confirm lantern rest restores the flasks, and confirm healing while injured still works.
+The full-health flask guard has been restored. The browser logic suite reports **28 / 28 passed** over local HTTP in the shared Chromium browser, including three new door-state checks. In a keyboard check, F at 100 health kept all three flasks and displayed the full-vitality message; after setting health to 40, F restored it to 95 and spent one flask; with no flasks, F left health unchanged and displayed the empty-flask message. The injured and empty-flask checks used browser-side player-state fixtures; they were not a full playthrough. No browser errors were observed. The repaired build has not been checked via `file://` or in Safari.
 
-The tables below describe the original clean build, before this deliberate bug was introduced. They are historical baseline evidence, not a claim that the current demo build passes every test. See `DEMO.md` for the repair exercise.
+Door follow-up: the shared browser showed the camp door opening on approach and closing on retreat, the cave's locked bone gate remaining closed, and the gate opening after pressing E with the key. Keyboard crossings from camp to cave and back opened the arrival-side door in each room. The reduced-motion setting opened and closed doors instantly. Browser-side player positions and key ownership were seeded for the doorway and gate checks; the keyboard crossings exercised the actual movement input and room-change path.
+
+The tables below describe the original clean build, before the deliberate bug was introduced. They are historical baseline evidence, not a claim that all original checks were repeated after this repair. See `DEMO.md` for the original repair exercise.
 
 The public repository is [coderabbit-demo/the-burrow-flash](https://github.com/coderabbit-demo/the-burrow-flash). The manually dispatched [issue-creation run](https://github.com/coderabbit-demo/the-burrow-flash/actions/runs/35878029959) succeeded and created [repair issue #1](https://github.com/coderabbit-demo/the-burrow-flash/issues/1) as github-actions[bot]. A [second dispatch](https://github.com/coderabbit-demo/the-burrow-flash/actions/runs/35878100761) also succeeded and logged `Reused demo issue`, leaving exactly one issue. This verifies GitHub issue creation and duplicate prevention, not CodeRabbit planning or review. CodeRabbit installation/access has not been independently verified.
 
@@ -55,7 +57,7 @@ During the original clean-build verification, no real CodeRabbit account was cre
 ## Reproduce without installing anything
 
 1. Copy the folder to another location.
-2. Disconnect from the network and double-click `tests.html`. Expect 24 / 25 passed in the intentional-bug demo, then 25 / 25 after the repair.
+2. Disconnect from the network and double-click `tests.html`. Expect 28 / 28 passed in the repaired build; the original intentional-bug demo reported 24 / 25.
 3. Double-click `index.html`, then enter the burrow.
 4. Talk to Pip with E, close the lesson, and check that movement resumes.
 5. Walk east, collect the northeastern key, and unlock the eastern gate with E.
